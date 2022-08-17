@@ -1,0 +1,17 @@
+.item {
+  text-decoration: none;
+  text-align: center;
+  font-size: 2.4rem;
+  border-radius: 8px;
+  border: 2px solid #4683bc;
+  border-bottom: 6px solid #4683bc;
+  background-color: #ced4da;
+  width: 30rem;
+  color: #071e33;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 3.6rem;
+}
+
+.item:hover {
+  color: #4683bc;
+}
