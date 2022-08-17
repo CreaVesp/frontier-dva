@@ -1,4 +1,6 @@
+import React from 'react';
 import { Route, Routes, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { connect } from 'dva';
 
 import Header from './components/Header';
 import MainMenu from './routes/MainMenu';
@@ -7,7 +9,7 @@ import UsersMenu from './routes/UsersMenu';
 import ProductsMenu from './routes/ProductsMenu';
 import InspectModal from './routes/InspectModal';
 
-function App() {
+function App(fetchData, state) {
   const navigate = useNavigate();
 
   // ⬇ InspectModal close
@@ -58,4 +60,16 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return state.main;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchData(state) {
+      dispatch({ type: 'main/fetchData', state });
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

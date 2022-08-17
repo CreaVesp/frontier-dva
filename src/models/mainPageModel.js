@@ -1,17 +1,16 @@
 import dva from 'dva';
-export const mainModel = {
+export default {
   namespace: 'main',
   state: { clients: [], users: [], products: [] },
   reducers: {
-    replaceAll(state, action) {
-      state.clients = action.payload.clients;
-      state.users = action.payload.users;
-      state.products = action.payload.products;
+    replaceAll(state, { payload: data }) {
+      return { ...state, data };
     },
   },
   effects: {
-    *fetchData({ put }) {
-      yield put({ type: 'replaceAll', payload: fetchCommonData });
+    *fetchData({ call, put }) {
+      const data = yield call(fetchCommonData);
+      yield put({ type: 'replaceAll', payload: data });
     },
   },
 };
